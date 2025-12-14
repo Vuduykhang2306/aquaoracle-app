@@ -1,0 +1,38 @@
+name: aquasense_pro
+description: A professional water quality monitoring application for ESP32 devices
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Supabase
+  supabase_flutter: ^2.0.0
+  
+  # Charts
+  fl_chart: ^0.65.0
+  
+  # HTTP
+  http: ^1.1.0
+  
+  # Google Fonts
+  google_fonts: ^6.1.0
+  
+  # Date formatting
+  intl: ^0.18.1
+  
+  # Cupertino Icons
+  cupertino_icons: ^1.0.2
+  golden_toolkit: ^0.15.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
