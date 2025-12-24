@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:ui';
 import '../config/app_colors.dart';
 import '../config/responsive.dart';
 import '../providers/settings_provider.dart';
@@ -120,7 +121,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                 SizedBox(height: Responsive.h(12)),
                 Text(
-                  "Hệ thống giám sát chất lượng môi trường nuôi trồng thủy sản ",
+                  "Hệ thống giám sát chất lượng môi trường thủy sản",
                   style: GoogleFonts.poppins(
                     fontSize: Responsive.sp(14),
                     color: Colors.white.withOpacity(0.95),
@@ -131,7 +132,7 @@ class _SplashScreenState extends State<SplashScreen>
                 Text(
                   "Developed by Vũ Duy Khang",
                   style: GoogleFonts.poppins(
-                    fontSize: Responsive.sp(11),
+                    fontSize: Responsive.sp(14),
                     color: Colors.white.withOpacity(0.7),
                     fontWeight: FontWeight.w300,
                     fontStyle: FontStyle.italic,
