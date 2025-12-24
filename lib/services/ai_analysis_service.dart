@@ -18,14 +18,14 @@ class AIAnalysisService {
       }).join("; ");
 
       final prompt = """
-Phân tích chất lượng nước với vai trò chuyên gia:
+Phân tích chất lượng nước với vai trò chuyên gia về môi trường thủy sản :
 
 HIỆN TẠI: TDS=${current.tds.toStringAsFixed(1)}ppm, Độ đục=${current.turbidity.toStringAsFixed(2)}NTU, pH=${current.ph.toStringAsFixed(1)}, Temp=${current.temperature.toStringAsFixed(1)}°C
 LỊCH SỬ: $historyText
 
 Hãy:
 1. Đánh giá tình trạng hiện tại (tốt/trung bình/kém) dựa trên TẤT CẢ các chỉ số (TDS, Độ đục, pH, Nhiệt độ).
-2. Xác định nước có an toàn để uống không (pH chuẩn 6.5-8.5).
+2. Xác định nước có an toàn để nuôi tôm thẻ hay ko ?.
 3. Phân tích xu hướng từ lịch sử.
 4. Dự đoán 5-7 ngày tới.
 5. Khuyến nghị hành động cụ thể.
