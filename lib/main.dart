@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       onNotificationToggle: toggleNotifications,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Hong Bang WaterMonitor',
+        title: 'Hong Bang AquaOracle',
         theme: _buildLightTheme(),
         darkTheme: _buildDarkTheme(),
         themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,

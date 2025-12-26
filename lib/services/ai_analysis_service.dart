@@ -80,11 +80,11 @@ Trả lời ngắn gọn 4-5 câu bằng tiếng Việt với emoji phù hợp.
         final turbidityTrend = avgTurbidityRecent - avgTurbidityOlder;
         
         if (tdsTrend > 20 || turbidityTrend > 1) {
-          trendAnalysis = "Xu hướng: Chất lượng nước đang giảm trong 10 ngày qua";
+          trendAnalysis = "Xu hướng: Chất lượng môi trường đang giảm trong 10 ngày qua";
         } else if (tdsTrend < -20 || turbidityTrend < -1) {
-          trendAnalysis = "Xu hướng: Chất lượng nước đang cải thiện";
+          trendAnalysis = "Xu hướng: Chất lượng môi trường đang cải thiện";
         } else {
-          trendAnalysis = "Xu hướng: Chất lượng nước tương đối ổn định";
+          trendAnalysis = "Xu hướng: Chất lượng môi trường tương đối ổn định";
         }
       }
     }

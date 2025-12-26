@@ -17,7 +17,7 @@ class _MLScreenState extends State<MLScreen> {
   double accuracy = 0.0;
   String selectedModel = 'XGBoost';
   
-  final List<String> models = ['XGBoost', 'Random Forest', 'Neural Network'];
+  final List<String> models = ['XGBoost'];
   final List<double> featureImportance = [0.35, 0.28, 0.22, 0.15];
   final List<String> featureNames = ['TDS', 'Độ đục', 'pH', 'Nhiệt độ'];
 
