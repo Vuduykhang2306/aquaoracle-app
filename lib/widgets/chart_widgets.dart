@@ -35,11 +35,15 @@ class WaterQualityChart extends StatelessWidget {
     
     List<FlSpot> tdsSpots = [];
     List<FlSpot> turbiditySpots = [];
+    List<FlSpot> phSpots = [];
+    List<FlSpot> tempSpots = [];
 
     for (int i = 0; i < reversedHistory.length; i++) {
       final item = reversedHistory[i];
       tdsSpots.add(FlSpot(i.toDouble(), item.tds));
       turbiditySpots.add(FlSpot(i.toDouble(), item.turbidity));
+      phSpots.add(FlSpot(i.toDouble(), item.ph));
+      tempSpots.add(FlSpot(i.toDouble(), item.temperature));
     }
 
     return Card(
@@ -104,17 +108,22 @@ class WaterQualityChart extends StatelessWidget {
                   lineBarsData: [
                     _buildLineBarData(tdsSpots, AppColors.lightPrimary),
                     _buildLineBarData(turbiditySpots, Colors.teal),
+                    _buildLineBarData(phSpots, Colors.orange),
+                    _buildLineBarData(tempSpots, Colors.red),
                   ],
                 ),
               ),
             ),
             SizedBox(height: Responsive.h(16)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Wrap(
+              spacing: Responsive.w(16),
+              runSpacing: Responsive.h(8),
+              alignment: WrapAlignment.center,
               children: [
                 _buildLegendItem(AppColors.lightPrimary, "TDS (ppm)", context),
-                SizedBox(width: Responsive.w(24)),
                 _buildLegendItem(Colors.teal, "Độ đục (NTU)", context),
+                _buildLegendItem(Colors.orange, "pH", context),
+                _buildLegendItem(Colors.red, "Nhiệt độ (°C)", context),
               ],
             )
           ],

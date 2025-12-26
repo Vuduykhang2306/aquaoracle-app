@@ -181,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen>
                       ),
                       SizedBox(height: Responsive.h(8)),
                       Text(
-                        "Đăng nhập để giám sát chất lượng nước",
+                        "Đăng nhập để giám sát chất lượng môi trường",
                         style: GoogleFonts.poppins(
                           fontSize: Responsive.sp(14),
                           color: Colors.white.withOpacity(0.9),
