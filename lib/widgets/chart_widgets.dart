@@ -55,6 +55,29 @@ class WaterQualityChart extends StatelessWidget {
               aspectRatio: 1.7,
               child: LineChart(
                 LineChartData(
+                  lineTouchData: LineTouchData(
+                    touchTooltipData: LineTouchTooltipData(
+                      getTooltipItems: (touchedSpots) {
+                        final Map<int, String> lineNames = {
+                          0: 'TDS',
+                          1: 'Độ đục',
+                          2: 'pH',
+                          3: 'Nhiệt độ',
+                        };
+
+                        return touchedSpots.map((LineBarSpot touchedSpot) {
+                          final String lineName = lineNames[touchedSpot.barIndex] ?? '';
+                          return LineTooltipItem(
+                            '$lineName: ${touchedSpot.y.toStringAsFixed(2)}',
+                            GoogleFonts.poppins(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          );
+                        }).toList();
+                      },
+                    ),
+                  ),
                   gridData: FlGridData(
                     show: true,
                     drawVerticalLine: false,
