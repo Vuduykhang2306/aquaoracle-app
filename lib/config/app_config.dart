@@ -4,8 +4,8 @@ class AppConfig {
   static const String supabaseAnonKey = "YOUR_SUPABASE_ANON_KEY";
   
   // Gemini AI Configuration
-  static const String geminiApiKey = "YOUR_GEMINI_API_KEY";
-  static const String geminiApiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+  static const String geminiApiKey = "YOUR_GEMINI_API_KEY"; // <-- PASTE YOUR KEY HERE
+  static const String geminiApiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
   
   // App Settings
   static const int autoRefreshSeconds = 45;

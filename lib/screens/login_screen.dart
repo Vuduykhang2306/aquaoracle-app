@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen>
               "OK",
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
-                color: AppColors.lightPrimary,
+                color: const Color.fromARGB(255, 2, 165, 230),
               ),
             ),
           ),
@@ -135,7 +135,7 @@ class _LoginScreenState extends State<LoginScreen>
             end: Alignment.bottomRight,
             colors: isDarkMode
                 ? [AppColors.darkBackground, AppColors.darkCard]
-                : [AppColors.lightPrimary, AppColors.lightPrimaryDark],
+                : [const Color.fromARGB(255, 0, 149, 207), const Color.fromARGB(255, 0, 131, 187)],
           ),
         ),
         child: SafeArea(
@@ -163,15 +163,14 @@ class _LoginScreenState extends State<LoginScreen>
                             ),
                           ],
                         ),
-                        child: Icon(
-                          Icons.opacity_outlined,
-                          size: Responsive.sp(40),
-                          color: AppColors.lightPrimaryDark,
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          fit: BoxFit.contain,
                         ),
                       ),
                       SizedBox(height: Responsive.h(24)),
                       Text(
-                        "AquaSense Pro",
+                        "AquaOracle Pro",
                         style: GoogleFonts.poppins(
                           fontSize: Responsive.sp(26),
                           fontWeight: FontWeight.w800,
@@ -193,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen>
                         padding: EdgeInsets.all(Responsive.w(28)),
                         decoration: BoxDecoration(
                           color: isDarkMode
-                              ? AppColors.darkCard
+                              ? const Color.fromARGB(255, 1, 141, 211)
                               : Colors.white,
                           borderRadius: BorderRadius.circular(Responsive.r(24)),
                           boxShadow: [
@@ -273,7 +272,7 @@ class _LoginScreenState extends State<LoginScreen>
         hintText: hint,
         prefixIcon: Icon(
           icon,
-          color: AppColors.lightPrimary,
+          color: const Color.fromARGB(255, 56, 175, 223),
           size: Responsive.sp(20),
         ),
         suffixIcon: isPassword
@@ -282,7 +281,7 @@ class _LoginScreenState extends State<LoginScreen>
                   _obscurePassword
                       ? Icons.visibility_off_outlined
                       : Icons.visibility_outlined,
-                  color: AppColors.lightPrimary,
+                  color: const Color.fromARGB(255, 10, 164, 224),
                   size: Responsive.sp(20),
                 ),
                 onPressed: () =>
