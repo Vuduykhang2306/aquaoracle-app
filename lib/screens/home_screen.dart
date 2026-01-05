@@ -181,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         setState(() {
           chatMessages.add({
             'role': 'ai',
-            'message': 'Đã có lỗi xảy ra, không thể kết nối tới AI.',
+            'message': 'Đã có lỗi xảy ra. ${e.toString().replaceFirst("Exception: ", "")}',
           });
         });
       }

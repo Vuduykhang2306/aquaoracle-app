@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "695911071502",
+    "project_id": "aquaoraclev3-8ecbc",
+    "storage_bucket": "aquaoraclev3-8ecbc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695911071502:android:a4489b5f69921893ac215f",
+        "android_client_info": {
+          "package_name": "com.example.aquaoracle_v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "YOUR_ANDROID_API_KEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

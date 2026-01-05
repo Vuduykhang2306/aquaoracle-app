@@ -161,14 +161,18 @@ Hãy trả lời trực tiếp, ngắn gọn, và thân thiện bằng tiếng V
         }),
       ).timeout(const Duration(seconds: 20));
 
+      final data = json.decode(utf8.decode(response.bodyBytes));
+
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
+        if (data['candidates'] == null || data['candidates'].isEmpty) {
+          throw Exception('Lỗi API: AI không đưa ra phản hồi. Chi tiết: ${data['error']?['message']}');
+        }
         return data['candidates'][0]['content']['parts'][0]['text'].toString().trim();
       } else {
-        return "Lỗi API: Không thể nhận câu trả lời từ AI.";
+        throw Exception('Lỗi API: ${response.statusCode}. Chi tiết: ${data['error']?['message']}');
       }
     } catch (e) {
-      return "Lỗi kết nối: Vui lòng kiểm tra lại mạng và thử lại.";
+      throw Exception('Không thể kết nối tới AI. Vui lòng kiểm tra lại mạng và thử lại. Lỗi: ${e.toString()}');
     }
   }
 }
