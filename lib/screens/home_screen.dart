@@ -166,17 +166,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     _chatController.clear();
 
-    // Simulate AI response (in real app, call AI service with context)
-    await Future.delayed(const Duration(seconds: 1));
-
-    if (mounted) {
-      setState(() {
-        chatMessages.add({
-          'role': 'ai',
-          'message': 'Cảm ơn câu hỏi của bạn về "$userMessage". Dựa trên dữ liệu hiện tại, tôi khuyên bạn nên theo dõi các chỉ số TDS và độ đục thường xuyên.',
+    try {
+      final aiResponse = await _aiService.getChatResponse(userMessage, latestData);
+      if (mounted) {
+        setState(() {
+          chatMessages.add({
+            'role': 'ai',
+            'message': aiResponse,
+          });
         });
-        isSendingMessage = false;
-      });
+      }
+    } catch (e) {
+      if (mounted) {
+        setState(() {
+          chatMessages.add({
+            'role': 'ai',
+            'message': 'Đã có lỗi xảy ra, không thể kết nối tới AI.',
+          });
+        });
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          isSendingMessage = false;
+        });
+      }
     }
   }
 
@@ -420,7 +434,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         Expanded(
           child: _buildParameterButton(
             isDarkMode,
-            'Tốc',
+            'Tds',
             '${data.tds.toStringAsFixed(0)}',
             'ppm',
             Icons.science_outlined,
@@ -431,7 +445,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         Expanded(
           child: _buildParameterButton(
             isDarkMode,
-            'Độc',
+            'Đục',
             '${data.turbidity.toStringAsFixed(1)}',
             'NTU',
             Icons.visibility_outlined,
@@ -610,7 +624,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   child: TextField(
                     controller: _chatController,
                     decoration: InputDecoration(
-                      hintText: 'Hỏi AI về chất lượng nước...',
+                      hintText: 'Hỏi AI về chất lượng môi trường...',
                       hintStyle: GoogleFonts.poppins(fontSize: Responsive.sp(13)),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(24),
@@ -802,13 +816,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           children: [
             Expanded(
               child: StatCard(
-                title: "Trạng thái nước uống",
+                title: "Trạng thái môi trường",
                 value: drinkabilityStatus,
                 unit: "",
-                icon: drinkabilityStatus == "An toàn để uống"
+                icon: drinkabilityStatus == "Môi trường an toàn"
                     ? Icons.check_circle_outline
                     : Icons.cancel_outlined,
-                iconColor: drinkabilityStatus == "An toàn để uống"
+                iconColor: drinkabilityStatus == "Môi trường an toàn"
                     ? Colors.green
                     : Colors.red,
               ),

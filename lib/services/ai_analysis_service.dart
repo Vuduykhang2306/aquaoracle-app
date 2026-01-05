@@ -18,7 +18,7 @@ class AIAnalysisService {
       }).join("; ");
 
       final prompt = """
-Phân tích chất lượng nước với vai trò chuyên gia về môi trường thủy sản :
+Phân tích chất lượng môi trường với vai trò chuyên gia về môi trường thủy sản :
 
 HIỆN TẠI: TDS=${current.tds.toStringAsFixed(1)}ppm, Độ đục=${current.turbidity.toStringAsFixed(2)}NTU, pH=${current.ph.toStringAsFixed(1)}, Temp=${current.temperature.toStringAsFixed(1)}°C
 LỊCH SỬ: $historyText
@@ -93,13 +93,13 @@ Trả lời ngắn gọn 4-5 câu bằng tiếng Việt với emoji phù hợp.
     bool isPhBad = current.ph < 6.5 || current.ph > 8.5;
 
     if (current.tds < 300 && current.turbidity < 2 && !isPhBad) {
-      currentStatus = "🌟 Chất lượng nước hiện tại: Tuyệt vời";
+      currentStatus = "🌟 Chất lượng môi trường hiện tại: Tuyệt vời";
       recommendation = "Duy trì chế độ bảo trì định kỳ";
     } else if (current.tds < 500 && current.turbidity < 5 && !isPhBad) {
-      currentStatus = "⚠️ Chất lượng nước hiện tại: Trung bình";
+      currentStatus = "⚠️ Chất lượng môi trường hiện tại: Trung bình";
       recommendation = "Kiểm tra và vệ sinh bộ lọc trong 2-3 ngày tới";
     } else {
-      currentStatus = "🚨 Chất lượng nước hiện tại: Kém";
+      currentStatus = "🚨 Chất lượng môi trường hiện tại: Kém";
       if (isPhBad) {
         recommendation = "pH không ổn định (${current.ph}). Cần xử lý cân bằng pH ngay.";
       } else {
@@ -123,9 +123,52 @@ Trả lời ngắn gọn 4-5 câu bằng tiếng Việt với emoji phù hợp.
 
   String getDrinkabilityStatus(WaterQuality data) {
     if (data.tds <= 500 && data.turbidity <= 5 && data.ph >= 6.5 && data.ph <= 8.5) {
-      return "An toàn để uống";
+      return "Môi trường an toàn";
     } else {
-      return "Không an toàn để uống";
+      return "Môi trường không an toàn";
+    }
+  }
+
+  Future<String> getChatResponse(String message, WaterQuality? currentData) async {
+    final context = currentData != null
+        ? "DỮ LIỆU HIỆN TẠI: TDS=${currentData.tds.toStringAsFixed(1)}ppm, Độ đục=${currentData.turbidity.toStringAsFixed(2)}NTU, pH=${currentData.ph.toStringAsFixed(1)}, Temp=${currentData.temperature.toStringAsFixed(1)}°C."
+        : "Không có dữ liệu môi trường hiện tại.";
+
+    final prompt = """
+Với vai trò là một chuyên gia về môi trường thủy sản, hãy trả lời câu hỏi của người dùng dựa trên bối cảnh sau:
+BỐI CẢNH: $context
+CÂU HỎI: "$message"
+
+Hãy trả lời trực tiếp, ngắn gọn, và thân thiện bằng tiếng Việt.
+""";
+
+    try {
+      final response = await http.post(
+        Uri.parse("${AppConfig.geminiApiUrl}?key=${AppConfig.geminiApiKey}"),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({
+          'contents': [
+            {
+              'parts': [
+                {'text': prompt}
+              ]
+            }
+          ],
+          'generationConfig': {
+            'temperature': 0.5,
+            'maxOutputTokens': 250,
+          }
+        }),
+      ).timeout(const Duration(seconds: 20));
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return data['candidates'][0]['content']['parts'][0]['text'].toString().trim();
+      } else {
+        return "Lỗi API: Không thể nhận câu trả lời từ AI.";
+      }
+    } catch (e) {
+      return "Lỗi kết nối: Vui lòng kiểm tra lại mạng và thử lại.";
     }
   }
 }
