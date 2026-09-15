@@ -1,12 +1,12 @@
-# AquaOracle — ứng dụng di động
+# AquaOracle - ứng dụng di động
 
 Ứng dụng Flutter của hệ thống AquaOracle: giám sát và dự báo chất lượng nước ao
 nuôi thuỷ sản. Đọc dữ liệu cảm biến từ Supabase, hiển thị biểu đồ thời gian
 thực, cảnh báo khi chỉ số vượt ngưỡng, và gọi Gemini để giải thích kết quả dự
 báo bằng ngôn ngữ tự nhiên.
 
-Đề tài dự thi Cuộc thi Sáng tạo Thanh thiếu niên, Nhi đồng 2025–2026 — giải Nhất
-cấp Phường, vào vòng chung kết toàn quốc.
+Đề tài dự thi Cuộc thi Sáng tạo Thanh thiếu niên, Nhi đồng năm 2026 - Cụm 4:
+Giải Nhất, vào Vòng chung kết toàn quốc.
 
 Firmware chạy trên thiết bị: [Esp32_AquaOracle_Programm](https://github.com/Vuduykhang2306/Esp32_AquaOracle_Programm)
 
@@ -48,7 +48,7 @@ thẳng trong `lib/config/app_config.dart`. Lịch sử git đã được viết
 
 Bài học đã ghi lại trong
 [smart-contract-security-lab](https://github.com/Vuduykhang2306/smart-contract-security-lab)
-— cùng một lỗi mà tôi rà cho hợp đồng thông minh của người khác thì cũng phải rà
+- cùng một lỗi mà tôi rà cho hợp đồng thông minh của người khác thì cũng phải rà
 cho chính mình.
 
 ## Trạng thái
