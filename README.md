@@ -13,11 +13,11 @@ Firmware chạy trên thiết bị: [Esp32_AquaOracle_Programm](https://github.c
 ## Kiến trúc
 
 ```
-ESP32 + 4 cảm biến  ──HTTPS/JSON mỗi 5 phút──>  Supabase (PostgreSQL, bật RLS)
-                                                        │
-                                          tầng API trên Vercel (PatchTST)
-                                                        │
-                                              ứng dụng Flutter  ──>  Gemini
+ESP32 + 4 cảm biến  --HTTPS/JSON mỗi 5 phút-->  Supabase (PostgreSQL, bật RLS)
+                                                   |
+                                      tầng API trên Vercel (PatchTST)
+                                                   |
+                                        ứng dụng Flutter  -->  Gemini
 ```
 
 Chỉ số đo: nhiệt độ (DS18B20), pH (Analog pH Meter Kit V2), TDS, độ đục.
