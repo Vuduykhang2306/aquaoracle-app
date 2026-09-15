@@ -93,13 +93,13 @@ Trả lời ngắn gọn 4-5 câu bằng tiếng Việt với emoji phù hợp.
     bool isPhBad = current.ph < 6.5 || current.ph > 8.5;
 
     if (current.tds < 300 && current.turbidity < 2 && !isPhBad) {
-      currentStatus = "🌟 Chất lượng môi trường hiện tại: Tuyệt vời";
+      currentStatus = "Chất lượng môi trường hiện tại: Tuyệt vời";
       recommendation = "Duy trì chế độ bảo trì định kỳ";
     } else if (current.tds < 500 && current.turbidity < 5 && !isPhBad) {
-      currentStatus = "⚠️ Chất lượng môi trường hiện tại: Trung bình";
+      currentStatus = "Chất lượng môi trường hiện tại: Trung bình";
       recommendation = "Kiểm tra và vệ sinh bộ lọc trong 2-3 ngày tới";
     } else {
-      currentStatus = "🚨 Chất lượng môi trường hiện tại: Kém";
+      currentStatus = "Chất lượng môi trường hiện tại: Kém";
       if (isPhBad) {
         recommendation = "pH không ổn định (${current.ph}). Cần xử lý cân bằng pH ngay.";
       } else {
@@ -118,7 +118,7 @@ Trả lời ngắn gọn 4-5 câu bằng tiếng Việt với emoji phù hợp.
 
     String drinkability = getDrinkabilityStatus(current);
 
-    return "$currentStatus. $trendAnalysis. $prediction. 💡 Khuyến nghị: $recommendation. Tình trạng uống: $drinkability.";
+    return "$currentStatus. $trendAnalysis. $prediction. Khuyến nghị: $recommendation. Tình trạng uống: $drinkability.";
   }
 
   String getDrinkabilityStatus(WaterQuality data) {

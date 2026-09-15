@@ -1,9 +1,7 @@
-/// Cấu hình runtime của ứng dụng.
-///
-/// Không hardcode khoá vào đây. Mọi giá trị nhạy cảm đọc từ biến biên dịch,
-/// truyền lúc build bằng --dart-define (xem README).
+// Cấu hình của app. Không để khoá trong file này nữa, truyền lúc build
+// bằng --dart-define. Cách chạy ghi trong README.
 class AppConfig {
-  // --- Supabase ---
+  // Supabase
   static const String supabaseUrl = String.fromEnvironment(
     'SUPABASE_URL',
     defaultValue: '',
@@ -13,7 +11,7 @@ class AppConfig {
     defaultValue: '',
   );
 
-  // --- Gemini ---
+  // Gemini
   static const String geminiApiKey = String.fromEnvironment(
     'GEMINI_API_KEY',
     defaultValue: '',
@@ -21,12 +19,13 @@ class AppConfig {
   static const String geminiApiUrl =
       'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent';
 
-  // --- Tham số hiển thị ---
+  // Mấy con số cho phần hiển thị
   static const int autoRefreshSeconds = 45;
   static const int historyLimit = 30;
   static const int displayHistoryLimit = 15;
 
-  /// Dừng sớm với thông báo rõ ràng thay vì để lỗi 401 khó hiểu lúc chạy.
+  // Gọi lúc khởi động cho chắc. Thiếu khoá thì báo ngay, đỡ phải ngồi mò
+  // xem sao API trả về 401.
   static void assertConfigured() {
     assert(
       supabaseUrl.isNotEmpty && supabaseAnonKey.isNotEmpty,
