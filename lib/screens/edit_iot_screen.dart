@@ -396,26 +396,22 @@ class _EditIoTScreenState extends State<EditIoTScreen> {
     );
   }
 
+  // TODO: nút Lưu chưa lưu được gì. Firmware ESP32 hiện chỉ gửi dữ liệu lên
+  // Supabase, không đọc cấu hình về, nên muốn lưu thật thì phải sửa cả firmware
+  // lẫn database. Tạm thời báo đúng là chưa lưu, để người dùng không tưởng là
+  // thiết bị đã nhận cấu hình mới.
   void _saveConfiguration() {
     if (_formKey.currentState!.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Cấu hình đã được lưu thành công!',
+            'Chưa lưu được: thiết bị chưa hỗ trợ nhận cấu hình từ app.',
             style: GoogleFonts.poppins(),
           ),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.orange,
           behavior: SnackBarBehavior.floating,
         ),
       );
-      
-      // TODO: chưa lưu thật. Cấu hình chưa được ghi vào Supabase hay gửi xuống
-      // ESP32, màn hình này chỉ báo đã lưu rồi đóng lại.
-      Future.delayed(const Duration(seconds: 1), () {
-        if (mounted) {
-          Navigator.pop(context);
-        }
-      });
     }
   }
 }
