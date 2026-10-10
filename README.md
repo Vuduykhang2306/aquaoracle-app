@@ -13,7 +13,7 @@ Firmware chạy trên thiết bị: [Esp32_AquaOracle_Programm](https://github.c
 ## Kiến trúc
 
 ```
-ESP32 + 4 cảm biến  --HTTPS/JSON mỗi 5 phút-->  Supabase (PostgreSQL, bật RLS)
+ESP32 + 4 cảm biến  --HTTPS/JSON mỗi 2 phút-->  Supabase (PostgreSQL, bật RLS)
                                                    |
                                       tầng API trên Vercel (PatchTST)
                                                    |

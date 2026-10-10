@@ -19,7 +19,7 @@ class _EditIoTScreenState extends State<EditIoTScreen> {
   String deviceId = 'ESP32_WQ_001';
   String wifiSSID = 'HongBang_IoT';
   String wifiPassword = '********';
-  int samplingInterval = 45; // seconds
+  int samplingInterval = 120; // giây, bằng SEND_INTERVAL bên firmware (2 phút)
   bool autoUpload = true;
   bool ledIndicator = true;
   
@@ -219,7 +219,7 @@ class _EditIoTScreenState extends State<EditIoTScreen> {
                       ),
                     ),
                     onChanged: (value) {
-                      samplingInterval = int.tryParse(value) ?? 45;
+                      samplingInterval = int.tryParse(value) ?? 120;
                     },
                   ),
                 ),
