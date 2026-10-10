@@ -1,12 +1,12 @@
-# AquaOracle - ứng dụng di động
+# AquaOracle: ứng dụng di động
 
-Ứng dụng Flutter của hệ thống AquaOracle: giám sát và dự báo chất lượng nước ao
-nuôi thuỷ sản. Đọc dữ liệu cảm biến từ Supabase, hiển thị biểu đồ thời gian
-thực, cảnh báo khi chỉ số vượt ngưỡng, và gọi Gemini để giải thích kết quả dự
-báo bằng ngôn ngữ tự nhiên.
+Ứng dụng Flutter của hệ thống AquaOracle, dùng để giám sát và dự báo chất
+lượng nước ao nuôi thuỷ sản. App đọc dữ liệu cảm biến từ Supabase, vẽ biểu đồ
+theo thời gian thực, cảnh báo khi chỉ số vượt ngưỡng, và gọi Gemini để giải
+thích kết quả dự báo bằng lời dễ hiểu.
 
-Đề tài dự thi Cuộc thi Sáng tạo Thanh thiếu niên, Nhi đồng năm 2026 - Cụm 4:
-Giải Nhất, vào Vòng chung kết toàn quốc.
+Đề tài dự thi Cuộc thi Sáng tạo Thanh thiếu niên, Nhi đồng năm 2026: đạt Giải
+Nhất Cụm 4 và vào Vòng chung kết toàn quốc.
 
 Firmware chạy trên thiết bị: [Esp32_AquaOracle_Programm](https://github.com/Vuduykhang2306/Esp32_AquaOracle_Programm)
 
@@ -20,16 +20,16 @@ ESP32 + 4 cảm biến  --HTTPS/JSON mỗi 5 phút-->  Supabase (PostgreSQL, b�
                                         ứng dụng Flutter  -->  Gemini
 ```
 
-Chỉ số đo: nhiệt độ (DS18B20), pH (Analog pH Meter Kit V2), TDS, độ đục.
+Các chỉ số đo: nhiệt độ (DS18B20), pH (Analog pH Meter Kit V2), TDS, độ đục.
 
 ## Màn hình
 
-Giới thiệu · nhập thông tin ao nuôi · chỉ số thời gian thực · đánh giá tổng quan
-· biểu đồ lịch sử · kết quả dự báo · lịch sử đo · chatbot tư vấn.
+Giới thiệu, nhập thông tin ao nuôi, chỉ số thời gian thực, đánh giá tổng quan,
+biểu đồ lịch sử, kết quả dự báo, lịch sử đo, chatbot tư vấn.
 
 ## Chạy thử
 
-Ứng dụng không chứa khoá trong mã nguồn. Truyền vào lúc build:
+Mã nguồn không chứa khoá nào. Các giá trị được truyền vào lúc build:
 
 ```bash
 cp dart_define.example.json dart_define.json   # rồi điền giá trị thật
@@ -37,21 +37,19 @@ flutter pub get
 flutter run --dart-define-from-file=dart_define.json
 ```
 
-`dart_define.json` đã nằm trong `.gitignore`. Đừng commit nó.
+`dart_define.json` đã có trong `.gitignore`, đừng commit file này.
 
 ## Ghi chú bảo mật
 
-Các bản trước của repo này có hardcode Supabase URL, anon key và Gemini API key
-thẳng trong `lib/config/app_config.dart`. Lịch sử git đã được viết lại để gỡ bỏ
-(`git filter-repo`), và toàn bộ khoá cũ đã bị vô hiệu. Cấu hình hiện đọc từ
-`--dart-define`.
+Các bản trước của repo này hardcode Supabase URL, anon key và Gemini API key
+ngay trong `lib/config/app_config.dart`. Tôi đã viết lại lịch sử git bằng
+`git filter-repo` để gỡ chúng ra, và toàn bộ khoá cũ đã bị vô hiệu. Giờ cấu
+hình được đọc từ `--dart-define`.
 
-Bài học đã ghi lại trong
-[smart-contract-security-lab](https://github.com/Vuduykhang2306/smart-contract-security-lab)
-- cùng một lỗi mà tôi rà cho hợp đồng thông minh của người khác thì cũng phải rà
-cho chính mình.
+Đây cũng là loại lỗi tôi hay đi tìm trong hợp đồng thông minh của người khác,
+nên code của chính mình cũng phải được rà như vậy.
 
 ## Trạng thái
 
-Dự án thi đã kết thúc; Supabase project dùng cho bản demo đã bị xoá, nên ứng
-dụng cần một backend mới để chạy lại. Mã nguồn giữ nguyên để tham chiếu.
+Cuộc thi đã kết thúc. Supabase project dùng cho bản demo đã bị xoá, nên muốn
+chạy lại thì cần một backend mới. Mã nguồn để nguyên để tham khảo.
