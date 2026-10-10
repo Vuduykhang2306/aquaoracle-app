@@ -409,7 +409,8 @@ class _EditIoTScreenState extends State<EditIoTScreen> {
         ),
       );
       
-      // In a real app, you would save to database or send to ESP32
+      // TODO: chưa lưu thật. Cấu hình chưa được ghi vào Supabase hay gửi xuống
+      // ESP32, màn hình này chỉ báo đã lưu rồi đóng lại.
       Future.delayed(const Duration(seconds: 1), () {
         if (mounted) {
           Navigator.pop(context);
