@@ -38,26 +38,15 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Timer? _refreshTimer;
   int _selectedNavIndex = 0;
 
-  late AnimationController _floatingController;
   late AnimationController _fadeController;
-  late Animation<double> _floatingAnimation;
   late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
     super.initState();
-    _floatingController = AnimationController(
-      duration: const Duration(seconds: 3),
-      vsync: this,
-    )..repeat(reverse: true);
-
     _fadeController = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
-    );
-
-    _floatingAnimation = Tween<double>(begin: -5, end: 5).animate(
-      CurvedAnimation(parent: _floatingController, curve: Curves.easeInOut),
     );
 
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -71,7 +60,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void dispose() {
     _refreshTimer?.cancel();
-    _floatingController.dispose();
     _fadeController.dispose();
     _chatController.dispose();
     super.dispose();

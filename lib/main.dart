@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'config/app_colors.dart';
-import 'config/responsive.dart';
 import 'providers/settings_provider.dart';
 import 'services/supabase_service.dart';
 import 'screens/splash_screen.dart';
