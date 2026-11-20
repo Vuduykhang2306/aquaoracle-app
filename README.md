@@ -1,55 +1,60 @@
-# AquaOracle: ứng dụng di động
+# AquaOracle: mobile app
 
-Ứng dụng Flutter của hệ thống AquaOracle, dùng để giám sát và dự báo chất
-lượng nước ao nuôi thuỷ sản. App đọc dữ liệu cảm biến từ Supabase, vẽ biểu đồ
-theo thời gian thực, cảnh báo khi chỉ số vượt ngưỡng, và gọi Gemini để giải
-thích kết quả dự báo bằng lời dễ hiểu.
+[![Analyze](https://github.com/Vuduykhang2306/aquaoracle-app/actions/workflows/analyze.yml/badge.svg)](https://github.com/Vuduykhang2306/aquaoracle-app/actions/workflows/analyze.yml)
 
-Đề tài dự thi Cuộc thi Sáng tạo Thanh thiếu niên, Nhi đồng năm 2026: đạt Giải
-Nhất Cụm 4 và vào Vòng chung kết toàn quốc.
+The Flutter app of AquaOracle, a system that watches the water in aquaculture
+ponds and tries to predict where it is heading. The app reads sensor data from
+Supabase, draws live charts, warns when a value leaves the safe range, and asks
+Gemini to explain the forecast in plain words for the farmer.
 
-Firmware chạy trên thiết bị: [Esp32_AquaOracle_Programm](https://github.com/Vuduykhang2306/Esp32_AquaOracle_Programm)
+It was our entry to the 2026 Vietnam Youth Innovation Contest. It won first
+prize in Cluster 4 and went to the national final.
 
-## Kiến trúc
+The firmware on the device is in
+[Esp32_AquaOracle_Programm](https://github.com/Vuduykhang2306/Esp32_AquaOracle_Programm).
+
+## Architecture
 
 ```
-ESP32 + 4 cảm biến  --HTTPS/JSON mỗi 2 phút-->  Supabase (PostgreSQL, bật RLS)
+ESP32 + 4 sensors  --HTTPS/JSON every 2 min-->  Supabase (PostgreSQL, RLS on)
                                                    |
-                                      tầng API trên Vercel (PatchTST)
+                                      API layer on Vercel (PatchTST)
                                                    |
-                                        ứng dụng Flutter  -->  Gemini
+                                         Flutter app  -->  Gemini
 ```
 
-Các chỉ số đo: nhiệt độ (DS18B20), pH (Analog pH Meter Kit V2), TDS, độ đục.
+Measured: temperature (DS18B20), pH (Analog pH Meter Kit V2), TDS, turbidity.
 
-## Màn hình
+## Screens
 
-Giới thiệu, nhập thông tin ao nuôi, chỉ số thời gian thực, đánh giá tổng quan,
-biểu đồ lịch sử, kết quả dự báo, lịch sử đo, chatbot tư vấn.
+Intro, pond setup, live readings, overall assessment, history charts, forecast,
+measurement log, and a chatbot for advice.
 
-## Chạy thử
+## Running it
 
-Mã nguồn không chứa khoá nào. Các giá trị được truyền vào lúc build:
+There are no keys in the source. They are passed in at build time:
 
 ```bash
-cp dart_define.example.json dart_define.json   # rồi điền giá trị thật
+cp dart_define.example.json dart_define.json   # then fill in real values
 flutter pub get
 flutter run --dart-define-from-file=dart_define.json
 ```
 
-`dart_define.json` đã có trong `.gitignore`, đừng commit file này.
+`dart_define.json` is in `.gitignore`. Don't commit it.
 
-## Ghi chú bảo mật
+## Security note
 
-Các bản trước của repo này hardcode Supabase URL, anon key và Gemini API key
-ngay trong `lib/config/app_config.dart`. Tôi đã viết lại lịch sử git bằng
-`git filter-repo` để gỡ chúng ra, và toàn bộ khoá cũ đã bị vô hiệu. Giờ cấu
-hình được đọc từ `--dart-define`.
+Earlier versions of this repo had the Supabase URL, the anon key and a Gemini
+API key hardcoded in `lib/config/app_config.dart`. I rewrote the git history
+with `git filter-repo` to take them out, and every old key has been revoked.
+Config now comes from `--dart-define`.
 
-Đây cũng là loại lỗi tôi hay đi tìm trong hợp đồng thông minh của người khác,
-nên code của chính mình cũng phải được rà như vậy.
+It's the same kind of mistake I go looking for in other people's smart
+contracts, so my own code gets the same check.
 
-## Trạng thái
+## Status
 
-Cuộc thi đã kết thúc. Supabase project dùng cho bản demo đã bị xoá, nên muốn
-chạy lại thì cần một backend mới. Mã nguồn để nguyên để tham khảo.
+The contest is over. The Supabase project behind the demo has been deleted, so
+running it again needs a new backend. The code stays up for reference.
+
+Tiếng Việt: [README.vi.md](README.vi.md)
